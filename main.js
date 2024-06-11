@@ -69,19 +69,24 @@ const contactBook = {
     findUserByUsername(username) {
         let countNotFoundUser = 0;
         let countFoundUser = 0;
-        this.users.filter(element => {
-            element.username === username ?
-                (countFoundUser++,
-                    console.log(`Знайден ${countFoundUser}-й користувач з ім'ям ${element.username}\nEmail: ${element.email}\nТелефон: ${element.phone}\n `)) :
+
+        const newFindUser = this.users.filter(element => {
+            if (element.username === username) {
+                countFoundUser++;
+                console.log(`\nЗнайден ${countFoundUser}-й користувач з ім'ям ${element.username}\nEmail: ${element.email}\nТелефон: ${element.phone}\n `);
+                return element;
+            } else {
                 countNotFoundUser++;
+            }
         });
-        countNotFoundUser === this.users.length && console.log(`Користувач з ім'ям ${username} не знайден.`)
+        countNotFoundUser === this.users.length && console.log(`Користувач з ім'ям ${username} не знайден.`);
+
+        console.log(newFindUser);
     },
 
     addNewUser(username, email, phone) {
-        let id = this.users[this.users.length - 1].id + 1;
-
-        let newUser = {
+        const id = this.users[this.users.length - 1].id + 1;
+        const newUser = {
             id,
             username,
             email,
@@ -92,6 +97,7 @@ const contactBook = {
 }
 
 // contactBook.findUserByUsername('Qwerty');
+
 contactBook.findUserByUsername('Delphine');
 
 contactBook.addNewUser('Eugene', 'it.yantowsky@gmail.com', "067-550-80-63");
