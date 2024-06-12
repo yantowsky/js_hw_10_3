@@ -67,21 +67,13 @@ const contactBook = {
     }],
 
     findUserByUsername(username) {
-        let countNotFoundUser = 0;
-        let countFoundUser = 0;
-
         const newFindUser = this.users.filter(element => {
-            if (element.username === username) {
-                countFoundUser++;
-                console.log(`\nЗнайден ${countFoundUser}-й користувач з ім'ям ${element.username}\nEmail: ${element.email}\nТелефон: ${element.phone}\n `);
-                return element;
-            } else {
-                countNotFoundUser++;
-            }
+            return element.username === username && element;
         });
-        countNotFoundUser === this.users.length && console.log(`Користувач з ім'ям ${username} не знайден.`);
-
-        console.log(newFindUser);
+        
+        newFindUser.length ?
+            (console.log(`Знайдено ${newFindUser.length} користувача з ім'ям ${username}:`), console.log(newFindUser)) :
+            console.log(`Користувач з ім'ям ${username} не знайден.`);
     },
 
     addNewUser(username, email, phone) {
@@ -96,7 +88,7 @@ const contactBook = {
     }
 }
 
-// contactBook.findUserByUsername('Qwerty');
+contactBook.findUserByUsername('Qwerty');
 
 contactBook.findUserByUsername('Delphine');
 
