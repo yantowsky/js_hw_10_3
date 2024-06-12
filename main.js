@@ -70,9 +70,9 @@ const contactBook = {
         const newFindUser = this.users.filter(element => {
             return element.username === username && element;
         });
-        
+
         newFindUser.length ?
-            (console.log(`Знайдено ${newFindUser.length} користувача з ім'ям ${username}:`), console.log(newFindUser)) :
+            (console.log(`Знайдено ${newFindUser.length} користувач(а) з ім'ям ${username}:`), console.log(newFindUser)) :
             console.log(`Користувач з ім'ям ${username} не знайден.`);
     },
 
